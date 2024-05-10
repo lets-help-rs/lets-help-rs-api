@@ -23,8 +23,6 @@ export class CollectPointService {
   async create(
     createCollectPointDto: CreateCollectPointDto,
   ): Promise<CollectPointEntity> {
-    console.log('oi');
-
     const [
       latitudeLowerBound,
       latitudeUpperBound,
