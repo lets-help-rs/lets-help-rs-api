@@ -13,12 +13,20 @@ import {
   CREATION_ACCURACY_RADIUS_IN_DEGREES,
   LOCALIZATION_ACCURACY_RADIUS_IN_DEGREES,
 } from 'src/shared/domain/constants/localization.constants';
+import { ReviewCollectPointDto } from '../domain/dtos/review-collect-point.dto';
 
 @Injectable()
 export class CollectPointService {
   constructor(
     private readonly collectPointRepository: CollectPointRepository,
   ) {}
+
+  async review(
+    id: string,
+    reviewCollectPointDto: ReviewCollectPointDto,
+  ): Promise<CollectPointEntity> {
+    return await this.collectPointRepository.review(id, reviewCollectPointDto);
+  }
 
   async create(
     createCollectPointDto: CreateCollectPointDto,

@@ -5,7 +5,8 @@ export default class CollectPointEntity {
   readonly description: string;
   readonly latitude: number;
   readonly longitude: number;
-  readonly reviews: number;
+  readonly badReviews: number;
+  readonly goodReviews: number;
   readonly createdAt: Date;
   readonly updatedAt: Date;
   readonly deletedAt?: Date | null;
@@ -15,7 +16,8 @@ export default class CollectPointEntity {
     description,
     latitude,
     longitude,
-    reviews,
+    badReviews,
+    goodReviews,
     createdAt,
     updatedAt,
     deletedAt,
@@ -24,7 +26,8 @@ export default class CollectPointEntity {
     this.description = description;
     this.latitude = latitude;
     this.longitude = longitude;
-    this.reviews = reviews;
+    this.badReviews = badReviews;
+    this.goodReviews = goodReviews;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
     this.deletedAt = deletedAt;
