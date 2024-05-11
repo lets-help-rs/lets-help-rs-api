@@ -31,6 +31,7 @@ export class CollectPointRepository {
         badReviews: {
           increment: type === ReviewTypeEnum.REPORT ? 1 : 0,
         },
+        updatedAt: new Date(),
       },
     });
 
