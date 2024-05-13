@@ -1,7 +1,7 @@
 version: '3.2'
 services:
   app:
-    image: node:18.16.0
+    image: node:20.13.1
     container_name: lets-help-rs-backend
     user: 'root'
     restart: always
