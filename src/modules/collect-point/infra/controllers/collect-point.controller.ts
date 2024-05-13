@@ -16,12 +16,15 @@ import { ListCollectPointParamsDto } from '../../domain/dtos/list-collect-point.
 import { ReviewCollectPointDto } from '../../domain/dtos/review-collect-point.dto';
 import CollectPointEntity from '../../domain/entities/collect-point.entity';
 import { CollectPointService } from '../../services/collect-point.service';
+import { SkipThrottle } from '@nestjs/throttler';
 
 @ApiTags('Collect Points')
+@SkipThrottle()
 @Controller('collect-points')
 export class CollectPointController {
   constructor(private readonly collectPointService: CollectPointService) {}
 
+  @SkipThrottle({ default: false })
   @ApiOperation({
     summary: 'Review de um ponto de coleta',
     description:
