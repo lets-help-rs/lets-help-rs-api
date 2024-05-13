@@ -24,7 +24,6 @@ import { SkipThrottle } from '@nestjs/throttler';
 export class CollectPointController {
   constructor(private readonly collectPointService: CollectPointService) {}
 
-  @SkipThrottle({ default: false })
   @ApiOperation({
     summary: 'Review de um ponto de coleta',
     description:
@@ -42,6 +41,7 @@ export class CollectPointController {
     return this.collectPointService.review(id, reviewCollectPointDto);
   }
 
+  @SkipThrottle({ default: false })
   @ApiOperation({
     summary: 'Cadastrar um ponto de coleta',
     description: 'Cadastra um ponto de coleta para doações',
