@@ -12,7 +12,8 @@ model CollectPoint {
   description String
   latitude    Float
   longitude   Float
-  reviews     Int       @default(0)
+  badReviews  Int       @default(0) @map("bad_reviews")
+  goodReviews Int       @default(0) @map("good_reviews")
   createdAt   DateTime  @default(now()) @map("created_at")
   updatedAt   DateTime  @updatedAt @map("updated_at")
   deletedAt   DateTime? @map("deleted_at")

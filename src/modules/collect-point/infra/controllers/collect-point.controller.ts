@@ -4,6 +4,7 @@ import {
   Get,
   HttpStatus,
   Param,
+  Patch,
   Post,
   Query,
 } from '@nestjs/common';
@@ -12,6 +13,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { FindAllResponseDto } from 'src/shared/domain/dtos/find-all-response.dto';
 import { CreateCollectPointDto } from '../../domain/dtos/create-collect-point.dto';
 import { ListCollectPointParamsDto } from '../../domain/dtos/list-collect-point.dto';
+import { ReviewCollectPointDto } from '../../domain/dtos/review-collect-point.dto';
 import CollectPointEntity from '../../domain/entities/collect-point.entity';
 import { CollectPointService } from '../../services/collect-point.service';
 import { SkipThrottle } from '@nestjs/throttler';
@@ -21,6 +23,23 @@ import { SkipThrottle } from '@nestjs/throttler';
 @Controller('collect-points')
 export class CollectPointController {
   constructor(private readonly collectPointService: CollectPointService) {}
+
+  @ApiOperation({
+    summary: 'Review de um ponto de coleta',
+    description:
+      'Faz uma review (denuncia ou aprovação) de um ponto de coleta para doações',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'O ponto de coleta foi revisado com sucesso',
+  })
+  @Patch('review/:id')
+  review(
+    @Param('id') id: string,
+    @Body() reviewCollectPointDto: ReviewCollectPointDto,
+  ): Promise<CollectPointEntity> {
+    return this.collectPointService.review(id, reviewCollectPointDto);
+  }
 
   @SkipThrottle({ default: false })
   @ApiOperation({
