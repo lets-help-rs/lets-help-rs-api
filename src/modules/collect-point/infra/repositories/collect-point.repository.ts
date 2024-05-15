@@ -26,7 +26,7 @@ export class CollectPointRepository {
       },
     });
 
-    if (foundCollectPoint.badReviews >= 10) {
+    if (foundCollectPoint.badReviews >= Number(process.env.REPORT_DELETE)) {
       await this.prismaService.collectPoint.delete({
         where: {
           id,
