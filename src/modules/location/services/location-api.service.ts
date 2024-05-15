@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { BrazilianStates } from 'src/shared/domain/enums/brazilian-states.enum';
-import axios from 'axios';
 
 @Injectable()
 export class LocationApiService {
@@ -8,14 +7,7 @@ export class LocationApiService {
 
   async findCitiesForState(stateId: BrazilianStates) {
     const requestPath = this.getCityQueryUrl(stateId);
-
-    const axiosConfig = {
-      httpsAgent: { rejectUnauthorized: false },
-    };
-
-    const response = await axios.get(requestPath, axiosConfig);
-
-    return response.data;
+    return fetch(requestPath).then((response) => response.json());
   }
 
   private getCityQueryUrl(stateId: BrazilianStates) {
