@@ -20,6 +20,22 @@ export class CollectPointRepository {
   ): Promise<CollectPointEntity> {
     const { type } = reviewCollectPointDto;
 
+    const foundCollectPoint = await this.prismaService.collectPoint.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (foundCollectPoint.badReviews >= 10) {
+      await this.prismaService.collectPoint.delete({
+        where: {
+          id,
+        },
+      });
+
+      return null;
+    }
+
     const collectPoint = await this.prismaService.collectPoint.update({
       where: {
         id,
