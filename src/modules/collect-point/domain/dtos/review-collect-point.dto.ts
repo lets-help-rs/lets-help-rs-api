@@ -7,7 +7,7 @@ export class ReviewCollectPointDto {
     description: 'Tipo da revisão do ponto de coleta',
     example: ReviewTypeEnum.APPROVE,
   })
-  @IsEnum({ message: 'Tipo da revisão em formato inválido' })
+  @IsEnum(ReviewTypeEnum, { message: 'Tipo da revisão em formato inválido' })
   @IsNotEmpty()
   type: ReviewTypeEnum;
 }
