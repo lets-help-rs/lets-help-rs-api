@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { BrazilianStates } from 'src/shared/domain/enums/brazilian-states.enum';
+import fetch from 'node-fetch';
 
 @Injectable()
 export class LocationApiService {
@@ -7,7 +8,10 @@ export class LocationApiService {
 
   async findCitiesForState(stateId: BrazilianStates) {
     const requestPath = this.getCityQueryUrl(stateId);
-    return fetch(requestPath).then((response) => response.json());
+
+    const agent = new (fetch as any).Agent({ rejectUnauthorized: false });
+
+    return fetch(requestPath, { agent }).then((response) => response.json());
   }
 
   private getCityQueryUrl(stateId: BrazilianStates) {
