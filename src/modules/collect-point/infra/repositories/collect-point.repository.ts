@@ -20,23 +20,7 @@ export class CollectPointRepository {
   ): Promise<CollectPointEntity> {
     const { type } = reviewCollectPointDto;
 
-    const foundCollectPoint = await this.prismaService.collectPoint.findUnique({
-      where: {
-        id,
-      },
-    });
-
-    if (foundCollectPoint.badReviews >= Number(process.env.REPORT_DELETE)) {
-      await this.prismaService.collectPoint.delete({
-        where: {
-          id,
-        },
-      });
-
-      return null;
-    }
-
-    const collectPoint = await this.prismaService.collectPoint.update({
+    let collectPoint = await this.prismaService.collectPoint.update({
       where: {
         id,
       },
@@ -50,6 +34,14 @@ export class CollectPointRepository {
         updatedAt: new Date(),
       },
     });
+
+    if (collectPoint.badReviews >= Number(process.env.REPORT_DELETE)) {
+      collectPoint = await this.prismaService.collectPoint.delete({
+        where: {
+          id,
+        },
+      });
+    }
 
     return CollectPointEntity.fromPrisma(collectPoint);
   }
