@@ -34,6 +34,8 @@ services:
       - ./:/app
     depends_on:
       - db
+    networks:
+      - web
 
   db:
     container_name: lets-help-rs-database
@@ -45,8 +47,9 @@ services:
       POSTGRES_PASSWORD: admin
       POSTGRES_USER: postgres
       POSTGRES_DB: letshelprs
+    networks:
+      - web
 
 networks:
-  default:
-    external:
-      name: web
+  web:
+    external: true
