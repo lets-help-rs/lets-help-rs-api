@@ -27,7 +27,7 @@ services:
       - NODE_TLS_REJECT_UNAUTHORIZED=0
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=Host(`api.letshelprs.online`)"
+      - "traefik.http.routers.backend.rule=Host(`api2.letshelprs.online`)"
       - "traefik.http.routers.backend.entrypoints=websecure"
       - "traefik.http.routers.backend.tls.certresolver=myresolver"
       - "traefik.http.services.backend.loadbalancer.server.port=3000"
