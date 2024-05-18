@@ -11,7 +11,7 @@ services:
       - '3000:3000'
     environment:
       - DB_PROVIDER=${DB_PROVIDER}
-      - DB_HOST=${DB_HOST}
+      - DB_HOST=db
       - DB_PORT=${DB_PORT}
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
@@ -42,15 +42,12 @@ services:
     container_name: lets-help-rs-database
     image: postgres:latest
     restart: always
-    ports:
-      - '5432:5432'
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_DB: ${DB_NAME}
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
     networks:
       - web
 
