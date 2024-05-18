@@ -51,7 +51,7 @@ export class ConfigService {
         ttl: this.readEnvVariable('THROTTLER_TTL', 60000),
         limit: this.readEnvVariable(
           'THROTTLER_LIMIT',
-          this.environment === 'production' ? 10 : 1000,
+          this.environment === 'production' ? 60 : 1000,
         ),
       },
     ];

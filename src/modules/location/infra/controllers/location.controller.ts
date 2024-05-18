@@ -1,13 +1,11 @@
 import { Controller, Get, HttpStatus, Param } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { BrazilianStates } from 'src/shared/domain/enums/brazilian-states.enum';
 import { CityApi } from '../../domain/interfaces/location.interface';
 import { LocationApiService } from '../../services/location-api.service';
 import { LocationService } from '../../services/location.service';
-import { BrazilianStates } from 'src/shared/domain/enums/brazilian-states.enum';
-import { SkipThrottle } from '@nestjs/throttler';
 
 @Controller('location')
-@SkipThrottle()
 export class LocationController {
   constructor(
     private readonly locationService: LocationService,
