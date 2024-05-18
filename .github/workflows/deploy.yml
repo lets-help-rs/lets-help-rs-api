@@ -38,5 +38,5 @@ jobs:
           key: ${{ secrets.VPS_KEY }}
           script: |
             cd ~/letshelpRS/lets-help-rs-api
-            docker compose pull api
-            docker compose up -d api
+            docker compose pull app
+            docker compose up -d app
