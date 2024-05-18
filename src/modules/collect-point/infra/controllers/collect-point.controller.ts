@@ -16,10 +16,8 @@ import { ListCollectPointParamsDto } from '../../domain/dtos/list-collect-point.
 import { ReviewCollectPointDto } from '../../domain/dtos/review-collect-point.dto';
 import CollectPointEntity from '../../domain/entities/collect-point.entity';
 import { CollectPointService } from '../../services/collect-point.service';
-import { SkipThrottle } from '@nestjs/throttler';
 
 @ApiTags('Collect Points')
-@SkipThrottle()
 @Controller('collect-points')
 export class CollectPointController {
   constructor(private readonly collectPointService: CollectPointService) {}
@@ -41,7 +39,6 @@ export class CollectPointController {
     return this.collectPointService.review(id, reviewCollectPointDto);
   }
 
-  @SkipThrottle({ default: false })
   @ApiOperation({
     summary: 'Cadastrar um ponto de coleta',
     description: 'Cadastra um ponto de coleta para doações',
